@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+
+
+
+    <div id="app">
+      <div class="container">
+        <header>
+          <input type="text" v-model='userSearch' @keyup.enter="search()">
+          <button type="button" name="button">Click me</button>
+        </header>
+        <main>
+          <div class="film-container" v-for="film in results" v-if="results.length > 0" >
+
+            <img class="film-img" v-if="film.poster_path" :src=" 'https://image.tmdb.org/t/p/w342' + film.poster_path ">
+            <img class="film-img" v-else src="https://www.altavod.com/assets/images/poster-placeholder.png">
+
+            <div class="spec-container overlay-left">
+              <div>{{film.title}}</div>
+              <div>{{film.original_title}}</div>
+              <img class="flag" v-if="availableFlags.includes(film.original_language)"
+              :src="'images/flags/' + film.original_language + '.png'">
+              <img class="flag" v-else src="images/flags/EF_flag.png" >
+              <div>{{film.original_language}}</div>
+              <div>{{getVote(film.vote_average)}}</div>
+              <i class="fas fa-star stars" v-for="index in getVote(film.vote_average)"></i>
+              <i class="far fa-star stars" v-for="index in (5 - getVote(film.vote_average)) "></i>
+              <div>{{film.overview}}</div>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="js/script.js" charset="utf-8"></script>
+  </body>
+</html>
