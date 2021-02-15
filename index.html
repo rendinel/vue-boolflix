@@ -5,6 +5,8 @@
     <title></title>
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
@@ -25,8 +27,8 @@
             <li class="ciao">La mia lista</li>
           </ul>
           <div class="header-right">
-            <input type="text" v-model='userSearch' @keyup.enter="search()">
-            <button type="button" name="button">Click me</button>
+            <input type="text" v-model='userSearch'@keyup.enter="search()" >
+            <i class="fas fa-search magni" v-on:click="search()"></i>
           </div>
 
         </header>
@@ -37,16 +39,27 @@
             <img class="film-img" v-else src="https://www.altavod.com/assets/images/poster-placeholder.png">
 
             <div class="spec-container overlay-left">
-              <div>{{film.title}}</div>
-              <div>{{film.original_title}}</div>
-              <img class="flag" v-if="availableFlags.includes(film.original_language)"
+
+              <div class="padding-bottom">
+                <span class="card-title">Titolo:</span>
+                 <span class="card-text">{{film.title}}</span>
+              </div>
+              <div class="padding-bottom">
+                <span class="card-title">Titolo originale:</span>
+                <span class="card-text">{{film.original_title}}</span>
+              </div>
+              <img class="flag padding-bottom" v-if="availableFlags.includes(film.original_language)"
               :src="'images/flags/' + film.original_language + '.png'">
               <img class="flag" v-else src="images/flags/EF_flag.png" >
-              <div>{{film.original_language}}</div>
-              <div>{{getVote(film.vote_average)}}</div>
+              <!-- <div>{{film.original_language}}</div>
+              <div>{{getVote(film.vote_average)}}</div> -->
+              <span class="card-title">Voto:</span>
               <i class="fas fa-star stars" v-for="index in getVote(film.vote_average)"></i>
               <i class="far fa-star stars" v-for="index in (5 - getVote(film.vote_average)) "></i>
-              <div>{{film.overview}}</div>
+              <div class="padding-top">
+                <span class="card-title">Overview:</span>
+                <span class="card-text">{{film.overview}}</span>
+              </div>
             </div>
 
           </div>
