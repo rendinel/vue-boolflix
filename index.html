@@ -15,8 +15,20 @@
     <div id="app">
       <div class="container">
         <header>
-          <input type="text" v-model='userSearch' @keyup.enter="search()">
-          <button type="button" name="button">Click me</button>
+          <img class="logo" src="images/logo-netflix.png" alt="">
+          <ul class="list">
+            <li class="ciao">Home</li>
+            <li class="ciao">Serie tv</li>
+            <li class="ciao">Film</li>
+            <li class="ciao">Original</li>
+            <li class="ciao">Aggiunti di recente</li>
+            <li class="ciao">La mia lista</li>
+          </ul>
+          <div class="header-right">
+            <input type="text" v-model='userSearch' @keyup.enter="search()">
+            <button type="button" name="button">Click me</button>
+          </div>
+
         </header>
         <main>
           <div class="film-container" v-for="film in results" v-if="results.length > 0" >
