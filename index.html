@@ -51,8 +51,6 @@
               <img class="flag padding-bottom" v-if="availableFlags.includes(film.original_language)"
               :src="'images/flags/' + film.original_language + '.png'">
               <img class="flag" v-else src="images/flags/EF_flag.png" >
-              <!-- <div>{{film.original_language}}</div>
-              <div>{{getVote(film.vote_average)}}</div> -->
               <span class="card-title">Voto:</span>
               <i class="fas fa-star stars" v-for="index in getVote(film.vote_average)"></i>
               <i class="far fa-star stars" v-for="index in (5 - getVote(film.vote_average)) "></i>
